@@ -51,3 +51,31 @@ This means the code requesting equipment does not have to separately choose a we
 Challenge
 
 Changing the Enemy constructor caused the old factories and spawners to stop working because they were still creating enemies without an EquipmentFactory. This is expected because those classes will be updated during Phase 4.
+
+-----------------------------------
+
+Phase 4 Journal
+
+Approach
+
+For Phase 4, I connected the enemy spawners with the equipment factories. The `ForestSpawner` uses the `WarriorEquipmentFactory`, while the `DungeonSpawner` uses the `MageEquipmentFactory`.
+
+This allows each spawner to automatically give its enemies the correct equipment family.
+
+In `Main`, I only work with the `EnemySpawner` and `Enemy` abstract types. I do not have to manually create the equipment factories or individual enemy classes.
+
+Where did I use abstract types?
+
+I used the `EnemySpawner` type when creating the forest and dungeon spawners:
+
+`EnemySpawner forestSpawner = new ForestSpawner();`
+
+I also used the `Enemy` type when storing the enemies and calling their `attack()` methods.
+
+The `EquipmentFactory` type is also used when the spawners create the appropriate equipment factory.
+
+Why does abstraction make the system easier to maintain?
+
+Using abstract types means that `Main` does not need to know the details of every enemy or equipment type. If I add another spawner or enemy later, I can create a new class that follows the existing abstractions without having to rewrite the main program.
+
+This makes the system easier to maintain and extend because the different parts of the program are less dependent on specific concrete classes.
