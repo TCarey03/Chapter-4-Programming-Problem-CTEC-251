@@ -29,3 +29,25 @@ How does inheritance help add a new level?
 Inheritance allows me to create a new spawner without changing the existing spawners. For example, I could create a `MountainSpawner` that extends `EnemySpawner` and make it create new enemies such as a Troll or Dragon.
 
 This makes the program easier to expand because each level can have its own enemy creation logic.
+
+---------------------------------
+
+Phase 3 Journal
+
+Approach
+
+For Phase 3, I created the `Weapon` and `Armor` interfaces and several concrete equipment classes. I then created an `EquipmentFactory` interface with methods for creating both a weapon and armor.
+
+I created two factories: `WarriorEquipmentFactory` and `MageEquipmentFactory`. The Warrior factory creates a Sword and Plate Armor, while the Mage factory creates a Staff and Robe.
+
+I updated the `Enemy` class so that it receives an `EquipmentFactory` in its constructor. This allows the enemy to automatically receive its weapon and armor.
+
+How does the Abstract Factory guarantee compatible equipment?
+
+The Abstract Factory keeps related equipment together. The Warrior factory always creates a Sword and Plate Armor, while the Mage factory always creates a Staff and Robe.
+
+This means the code requesting equipment does not have to separately choose a weapon and armor. It can choose one equipment factory and receive a matching set.
+
+Challenge
+
+Changing the Enemy constructor caused the old factories and spawners to stop working because they were still creating enemies without an EquipmentFactory. This is expected because those classes will be updated during Phase 4.
